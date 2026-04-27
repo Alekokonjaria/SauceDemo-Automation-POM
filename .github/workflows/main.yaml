@@ -19,4 +19,5 @@ jobs:
 
       - name: Run Tests
         run: |
+          ls -R
           pytest Tests/test_purchase_pom.py --headless
