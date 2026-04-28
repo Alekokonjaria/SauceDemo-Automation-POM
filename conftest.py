@@ -7,9 +7,7 @@ def driver():
     options = Options()
     options.add_argument("--headless")
 
-    driver = webdriver.Firefox(options=options)
-
-    driver = webdriver.Firefox()
+    driver = webdriver.Chrome()
     driver.maximize_window()
     yield driver
     driver.quit()
