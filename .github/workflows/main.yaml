@@ -19,4 +19,4 @@ jobs:
 
       - name: Run Tests
         run: |
-          pytest Tests/test_purchase_pom.py
+          python -m pytest Tests/test_purchase_pom.py
