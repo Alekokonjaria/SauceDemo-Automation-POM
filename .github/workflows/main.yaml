@@ -22,6 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          pip install pytest-html
 
       - name: Run tests
         run: pytest Tests/test_purchase_pom.py --html=report.html
