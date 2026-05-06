@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from selenium import webdriver
 from pages.inventory_page import InventoryPage
@@ -26,4 +28,5 @@ def test_full_purchase_flow(driver):
     inventory_pg.add_all_items()
 
 #3: Assertation - Check if 6 product
+    time.sleep(3)
     assert inventory_pg.get_cart_count() == "6"

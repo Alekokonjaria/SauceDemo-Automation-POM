@@ -1,4 +1,7 @@
+from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
 from pages.base_page import BasePage
 
 class InventoryPage(BasePage):
@@ -13,8 +16,8 @@ class InventoryPage(BasePage):
 
         for btn in button:
             btn.click()
-
     def get_cart_count(self):
+
         return self.get_text(self.CART_BADGE)
 
     def go_to_cart(self):
