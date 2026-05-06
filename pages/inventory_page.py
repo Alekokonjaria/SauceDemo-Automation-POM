@@ -1,9 +1,6 @@
-from selenium import webdriver
+import time
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-
 from pages.base_page import BasePage
-
 class InventoryPage(BasePage):
 
 #1: Finding and Testing Buttons
@@ -15,7 +12,11 @@ class InventoryPage(BasePage):
         button = self.driver.find_elements(*self.ADD_TO_CARTS_BTNS)
 
         for btn in button:
-            btn.click()
+            button = self.driver.find_element(By.XPATH, "//button[text()='Add to cart']")
+            self.driver.execute_script("arguments[0].scrollIntoView();", btn)
+            button.click()
+            time.sleep(0.3)
+
     def get_cart_count(self):
 
         return self.get_text(self.CART_BADGE)

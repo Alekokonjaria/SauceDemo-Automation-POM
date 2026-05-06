@@ -9,7 +9,7 @@ def test_purchase_flow(driver):
     inventory_pg = InventoryPage(driver)
 
     driver.get("https://www.saucedemo.com/")
-    login_pg.login("standard_user", "secret_sauce")
+    login_pg.login("performance_glitch_user", "secret_sauce")
 
     inventory_pg.add_all_items()
     assert inventory_pg.get_cart_count() == "6"
