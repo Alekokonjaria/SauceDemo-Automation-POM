@@ -2,8 +2,13 @@ import time
 
 import pytest
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.ie.webdriver import WebDriver
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
+
 
 
 def test_login(driver):
@@ -28,5 +33,7 @@ def test_full_purchase_flow(driver):
     inventory_pg.add_all_items()
 
 #3: Assertation - Check if 6 product
-    time.sleep(3)
+    WebDriverWait(driver, 5).until(
+        EC.text_to_be_present_in_element((By.CLASS_NAME, "shopping_cart_badge"), "6")
+    )
     assert inventory_pg.get_cart_count() == "6"
