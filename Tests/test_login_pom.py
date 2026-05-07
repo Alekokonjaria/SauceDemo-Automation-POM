@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -5,16 +6,20 @@ from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
 
 
-
+@allure.feature("Login")
+@allure.story("Valid Login")
 def test_login(driver):
 #1: Page Object Creation
     login_pg = LoginPage(driver)
 #2: Getting Web Page
-    driver.get("https://www.saucedemo.com/")
+    with allure.step("Open Web Page"):
+        driver.get("https://www.saucedemo.com/")
 #3: Input information
-    login_pg.login("standard_user", "secret_sauce")
+    with allure.step("Insert user & password"):
+        login_pg.login("standard_user", "secret_sauce")
 #4: Assertation
-    assert "inventory" in driver.current_url
+    with allure.step("Check authorization"):
+        assert "inventory" in driver.current_url
 
 def test_full_purchase_flow(driver):
     login_pg = LoginPage(driver)
