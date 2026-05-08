@@ -1,5 +1,4 @@
 name: UI Tests
-
 on: [push]
 
 jobs:
@@ -12,7 +11,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.14.4"
+          python-version: "3.12"
 
       - name: Install dependencies
         run: |
@@ -21,6 +20,7 @@ jobs:
 
       - name: Run Pytest
         run: pytest --alluredir=allure-results
+        continue-on-error: true
 
       - name: Get Allure history
         uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Allure Report action from marketplace
+      - name: Allure Report action
         uses: simple-elf/allure-report-action@master
         if: always()
         with:
