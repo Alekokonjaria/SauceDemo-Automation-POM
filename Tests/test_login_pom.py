@@ -11,12 +11,15 @@ from pages.login_page import LoginPage
 def test_login(driver):
 #1: Page Object Creation
     login_pg = LoginPage(driver)
+
 #2: Getting Web Page
     with allure.step("Open Web Page"):
         driver.get("https://www.saucedemo.com/")
+
 #3: Input information
     with allure.step("Insert user & password"):
         login_pg.login("standard_user", "secret_sauce")
+
 #4: Assertation
     with allure.step("Check authorization"):
         assert "inventory" in driver.current_url

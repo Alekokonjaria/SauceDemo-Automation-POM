@@ -12,7 +12,7 @@ class BasePage:
     def find(self, locator):
         try:
             return self.wait.until(EC.presence_of_element_located(locator))
-        except TimeoutException as e:
+        except TimeoutException:
             self.takescreenshot(f"error_{locator[1]}")
             
     def click(self, locator):
@@ -32,3 +32,4 @@ class BasePage:
         path = f"screenshots/{name}-{now}.png"
         self.driver.save_screenshot(path)
         print(f"screenshot saved at: {path}")
+
