@@ -12,7 +12,8 @@ def driver():
 
     # Browser Configuration
     chrome_options.add_argument("--incognito")
-    #chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--window-size=1920,1080")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
@@ -42,6 +43,9 @@ def pytest_sessionfinish():
     results_dir = "allure-results"
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)
+
+    with open(os.path.join(results_dir, "environment.properties"), "w") as f:
+        f.write(env_info)
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
